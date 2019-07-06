@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox stylesheets="application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox stylesheets="application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+	fx:controller="ec.edu.upse.facsistel.visual1.tienda_ropa.controllers.ControllerLogin">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
@@ -36,10 +37,10 @@
         </rowConstraints>
          <children>
             <Label focusTraversable="false" text="Usuario" />
-            <TextField prefHeight="100.0" prefWidth="261.0" promptText="Ingrese su Username" GridPane.columnIndex="1" />
+            <TextField fx:id="txtUsername" prefHeight="100.0" prefWidth="261.0" promptText="Ingrese su Username" GridPane.columnIndex="1" />
             <Label focusTraversable="false" text="Contrasena" GridPane.rowIndex="1" />
-            <PasswordField promptText="Ingrese su clave" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ingresar" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+            <PasswordField fx:id="passwordField" promptText="Ingrese su clave" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button onAction="#validarCredenciales" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ingresar" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
             <Button cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancelar" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Limpiar" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" />
          </children>
