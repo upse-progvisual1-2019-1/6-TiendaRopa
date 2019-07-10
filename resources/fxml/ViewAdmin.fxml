@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+	stylesheets="application.css" fx:controller="ec.edu.upse.facsistel.visual1.tienda_ropa.controllers.ControllerAdmin">
 	<Label text="Administracion de Tienda Ropa" />
+   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Vendedores">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                     <Label text="Lista de Empleados" />
+                     <ListView fx:id="lstEmpleados" maxHeight="1.7976931348623157E308" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                     <HBox layoutX="27.0" layoutY="117.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                        <children>
+                           <Button mnemonicParsing="false" text="Agregar" />
+                           <Button mnemonicParsing="false" text="Modificar" />
+                           <Button mnemonicParsing="false" text="Eliminar" />
+                        </children>
+                     </HBox>
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Clientes">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+       </Tab>
+         <Tab text="Productos">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+           </content>
+         </Tab>
+     </tabs>
+      <padding>
+         <Insets top="2.0" />
+      </padding>
+   </TabPane>
 </VBox>
-
