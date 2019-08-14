@@ -1,40 +1,49 @@
 package ec.edu.upse.facsistel.visual1.tienda_ropa.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class ControllerLogin {
+public class ControllerLogin implements ControllerBase {
 
 	@FXML
 	private TextField txtUsername;
 	
 	@FXML private PasswordField passwordField;
+	@FXML private ChoiceBox<String> chbRol;
 	
 	private String usuario = "root";
 	private String clave = "batman123";
 	
-	
 	public void initialize() {
 		
 		System.out.println("Inicializada la pantalla!");
+		cargarRoles();
 
 	}
 	
+	private void cargarRoles() {
+		List<String> listaRoles = new ArrayList<String>();
+		listaRoles.add("vendedor");
+		listaRoles.add("administrador");
+		listaRoles.add("cliente");
+		listaRoles.add("visitante");
+		
+		ObservableList<String> listaObservableRoles = 
+				FXCollections.observableArrayList(listaRoles);
+		chbRol.setItems(listaObservableRoles);
+		chbRol.getSelectionModel().selectLast();
+		
+	}
+
 	@FXML
 	private void validarCredenciales()
 	{
@@ -45,35 +54,51 @@ public class ControllerLogin {
 		{
 			// TODO Transicion a otra pantalla
 			System.out.println("Login Correcto");
-			transicionPantalla();
+			
+			String pantallaDestino = "/ViewTiendaGeneral.fxml";
+			pantallaDestino = seleccionarPantallaDestinoPorRol();
+			
+			ControllerGenerico.transicionPantalla(pantallaDestino, (Stage) txtUsername.getScene().getWindow(), "Vista Administrador");
+			//transicionPantalla();
 		}else {
 			System.out.println("Usuario o Contrasena incorrecta.");
-			mostrarPantallaError();
+			ControllerGenerico.mostrarPantallaError("Error de Inicio de Sesion!");
 		}
 	}
-	
-	private void transicionPantalla()
-	{
-		try {
-			Parent rootNuevaPantalla = FXMLLoader.load(getClass().getResource("/ViewAdmin.fxml"));
-			Scene nuevaEscena = new Scene(rootNuevaPantalla);
-			
-			Stage s = (Stage) txtUsername.getScene().getWindow();
-			s.setScene(nuevaEscena);
-			s.show();
-			
-		} catch (IOException e) {
-			System.err.println("Error al cargar la vista nueva.");
-			e.printStackTrace();
+
+	private String seleccionarPantallaDestinoPorRol() {
+		String rolSeleccionado = chbRol.getSelectionModel().getSelectedItem();
+		String pantallaDestino  = "/ViewTiendaGeneral.fxml";;
+		switch (rolSeleccionado) {
+		case "vendedor":
+			pantallaDestino = "/ViewTiendaVendedor.fxml";
+			break;
+		case "administrador":
+			pantallaDestino = "/ViewAdmin.fxml";
+			break;
+		case "cliente":
+			pantallaDestino = "/ViewTiendaCliente.fxml";
+			break;
+		case "visitante":
+			pantallaDestino = "/ViewTiendaGeneral.fxml";
+			break;
+		default:
+			ControllerGenerico.mostrarPantallaError("Seleccione un Rol!");
 		}
+		return pantallaDestino;
 	}
-	
-	private void mostrarPantallaError()
-	{
-		Alert alert = new Alert(AlertType.ERROR, "Error de Inicio de Sesion!", ButtonType.CLOSE);
-		alert.showAndWait();
+
+	@Override
+	public void setObjeto(Object o) {
+		// FIXME Este metodo no funciona aqui... que puedo hacer al respecto
+		
 	}
-	
-	
+
+	@Override
+	public void cancelar() {
+		System.exit(0);
+		
+	}
+
 
 }
