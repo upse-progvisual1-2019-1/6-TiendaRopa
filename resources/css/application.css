@@ -5,3 +5,12 @@
 	-fx-background-color: blue; 
 	-fx-background-color: red;	
 }
+
+.tile-pane{
+	-fx-hgap: 10;
+}
+
+.tileProductos{
+	-fx-padding: 4;
+	-fx-hgap: 10;
+}
