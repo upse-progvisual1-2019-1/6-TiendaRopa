@@ -16,6 +16,8 @@ public abstract class Persona {
 	protected String telefono;
 	protected String direccion;
 	protected String email;
+	protected String urlFoto;
+	protected int meritos;
 	
 	public Persona(String cedula, String nombre, String apellido, LocalDate fechaNacimiento) {
 		this.cedula = cedula;
@@ -35,6 +37,18 @@ public abstract class Persona {
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.email = email;
+	}
+	
+	public Persona(Persona otraPersona) {
+		super();
+		this.cedula = otraPersona.cedula;
+		this.nombre = otraPersona.nombre;
+		this.apellido = otraPersona.apellido;
+		this.genero = otraPersona.genero;
+		this.fechaNacimiento = otraPersona.fechaNacimiento;
+		this.telefono = otraPersona.telefono;
+		this.direccion = otraPersona.direccion;
+		this.email = otraPersona.email;
 	}
 
 	public String getNombre() {
@@ -91,6 +105,14 @@ public abstract class Persona {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
 	}
 
 	@Override
